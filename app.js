@@ -19,12 +19,13 @@ async function fetchStory(id) {
 // Route to get top stories
 app.get('/topstories', async (req, res) => {
 
-    const password = req.query.password;
+    // Récupération du mot de passe à partir de l'en-tête de la requête
+    const password = req.headers['password'];
+
     if (password !== 'totobot') {
         res.status(401).json({ error: 'Unauthorized' });
         return;
     }
-
     try {
 
         const totalSize = req.query.size || 80;
